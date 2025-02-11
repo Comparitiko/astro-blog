@@ -2,8 +2,11 @@
 import "@/styles/blog.css";
 import { ClientRouter } from "astro:transitions";
 
-const { ...rest } = Astro.props;
-const frontmater = rest.frontmatter;
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -12,11 +15,11 @@ const frontmater = rest.frontmatter;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{frontmater.title}</title>
+    <title>{title}</title>
     <ClientRouter />
   </head>
   <body class="bg-gray-900">
-    <a href="/">Volver a la página principal</a>
+    <a href="/" id="back-btn">Volver a la página principal</a>
 
     <main class="mb-10 max-w-5xl m-auto px-2 py-2">
       <slot />
