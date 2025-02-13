@@ -15,6 +15,7 @@ frontmatter.image;
 
 <div class="lg:flex">
   <Image
+    transition:name={`${post.slug}-image`}
     src={frontmatter.image}
     alt={`Imagen del post ${frontmatter.title}`}
     width={640}

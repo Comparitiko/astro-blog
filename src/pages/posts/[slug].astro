@@ -23,6 +23,8 @@ const { Content, headings } = await post.render();
   <h4 class="text-md text-gray-400 mb-0">{frontmatter.author}</h4>
 
   <Image
+    transition:name={`${post.slug}-image`}
+    class="m-auto object-cover my-5 rounded-md"
     src={frontmatter.image}
     format="webp"
     alt={`Imagen del post ${frontmatter.title}`}
