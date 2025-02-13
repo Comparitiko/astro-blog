@@ -11,14 +11,6 @@ layout: "@/layouts/BlogLayout.astro"
 
 # {frontmatter.title}
 
-{/* <!-- Mostrar imagen --> */}
-
-<img
-  src="/assets/images/post-01.png"
-  width="350"
-  alt="Explorando Funciones de ES6"
-/>
-
 JavaScript ES6 introdujo varias funciones nuevas que han hecho que la codificación en JavaScript sea más eficiente y agradable. Vamos a explorar algunas de estas funciones.
 
 ## Arrow Functions - Funciones de Flecha
@@ -29,7 +21,7 @@ Las funciones de flecha proporcionan una nueva sintaxis para escribir expresione
 
 ```javascript
 const add = (a, b) => a + b;
-console.log(add(2, 3)); // Output: 5
+(add(2, 3)); // Output: 5
 ```
 
 ## Template Literals - Literales de Plantilla
@@ -40,7 +32,7 @@ Los literales de plantilla permiten una interpolación de cadenas más fácil y 
 
 ```javascript
 const name = "Jane";
-console.log(`Hello, ${name}!`);
+(`Hello, ${name}!`);
 // Output: Hello, Jane!
 ```
 
@@ -53,5 +45,5 @@ La asignación por desestructuración le permite extraer valores de matrices u o
 ```javascript
 const person = { name: "Jane", age: 30 };
 const { name, age } = person;
-console.log(name, age); // Output: Jane 30
+(name, age); // Output: Jane 30
 ```

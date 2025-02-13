@@ -1,0 +1,95 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Image, Picture } from "astro:assets";
+
+import post05 from "@/assets/images/post-05.png";
+---
+
+<Layout title="Imagenes">
+  <h1 class="text-5xl">Imagenes</h1>
+  <img
+    src="/assets/images/post-05.png"
+    alt="Un astronauta en espacio"
+    width="250"
+    height="250"
+  />
+
+  <h1>Low quality</h1>
+  <Image
+    quality="low"
+    src={post05}
+    alt="Imagen 5"
+    style={{
+      height: "250px",
+      width: "250px",
+    }}
+    width="250"
+    height="250"
+  />
+
+  <h1>Mid quality</h1>
+  <Image quality="mid" src={post05} alt="Imagen 5" />
+
+  <h1>High quality</h1>
+  <Image
+    quality="high"
+    src={post05}
+    alt="Imagen 5"
+    style={{
+      height: "250px",
+      width: "250px",
+    }}
+    width="250"
+    height="250"
+  />
+
+  <h1>Max quality</h1>
+  <Image
+    format="avif"
+    quality="max"
+    src={post05}
+    alt="Imagen 5"
+    style={{
+      height: "250px",
+      width: "250px",
+    }}
+    width="250"
+    height="250"
+  />
+
+  <h1>Picture</h1>
+  <Picture
+    formats={["webp", "avif", "jpeg", "png"]}
+    widths={[240, 540, 720, post05.width]}
+    sizes="
+			(max-width: 360px) 240px,
+			(max-width: 720px) 540px,
+			(max-width: 1600px) 720px,
+			1600px
+  	"
+    quality="max"
+    src={post05}
+    alt="Imagen 5"
+  />
+
+  <div
+    style={{
+      height: "3000px",
+    }}
+  >
+  </div>
+
+  <img
+    src="/assets/images/post-05.png"
+    loading="lazy"
+    alt="Un astronauta en espacio"
+    width="150"
+  />
+</Layout>
+
+<style>
+  h1 {
+    color: white;
+    margin-top: 30px;
+  }
+</style>
