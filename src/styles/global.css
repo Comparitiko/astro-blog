@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+.default-a {
+	@apply bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer;
+}
+
+.disabled {
+	@apply bg-gray-600 hover:bg-gray-600 cursor-default;
+}
