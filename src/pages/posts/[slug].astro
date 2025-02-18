@@ -1,54 +1,72 @@
 ---
 import BlogLayout from "@/layouts/BlogLayout.astro";
+import { Formatter } from "@/utils/formatter";
 import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 
 export const getStaticPaths = (async () => {
-  const posts = await getCollection("blog");
+	const posts = await getCollection("blog");
 
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
 }) satisfies GetStaticPaths;
 
 const { post } = Astro.props;
 const frontmatter = post.data;
 
 const { Content, headings } = await post.render();
+
+const author = (await getEntry("author", frontmatter.author.id))!.data;
 ---
 
 <BlogLayout title={frontmatter.title}>
-  <h4 class="text-md text-gray-400 mb-0">{frontmatter.author}</h4>
+	<h1 class="text-xs text-gray-500 mb-0">{frontmatter.title}</h1>
+	<div class="text-md text-gray-400 mb-0 flex flex-row mt-2">
+		<Image
+			src={author.avatar}
+			alt={`Imagen del autor ${author.name}`}
+			class="rounded-full w-10 h-10 object-cover"
+			width={50}
+			height={50}
+		/>
+		<div class="flex flex-col ml-5">
+			<a href={`/blog/${frontmatter.author.id}`}>{author.name}</a>
+			<span class="text-xs text-gray-200"
+				>{Formatter.formatDate(frontmatter.date)}</span
+			>
+		</div>
+	</div>
 
-  <Image
-    transition:name={`${post.slug}-image`}
-    class="m-auto object-cover my-5 rounded-md"
-    src={frontmatter.image}
-    format="webp"
-    alt={`Imagen del post ${frontmatter.title}`}
-    width={600}
-    height={220}
-  />
+	<Image
+		transition:name={`${post.slug}-image`}
+		class="m-auto object-cover my-5 rounded-md"
+		src={frontmatter.image}
+		format="webp"
+		alt={`Imagen del post ${frontmatter.title}`}
+		width={600}
+		height={220}
+	/>
 
-  <!--  -->
-  <h3>Tabla de contenido</h3>
-  <ol>
-    {
-      headings.map((heading, index) => (
-        <li>
-          <a href={`#${heading.slug}`}>
-            {index + 1} - {heading.text}
-          </a>
-        </li>
-      ))
-    }
-  </ol>
+	<!--  -->
+	<h3>Tabla de contenido</h3>
+	<ol>
+		{
+			headings.map((heading, index) => (
+				<li>
+					<a href={`#${heading.slug}`}>
+						{index + 1} - {heading.text}
+					</a>
+				</li>
+			))
+		}
+	</ol>
 
-  <Content />
+	<Content />
 
-  <div class="my-20">
-    <a href="#back-btn" class="text-blue-500 hover:underline">Volver arriba</a>
-  </div>
+	<div class="my-20">
+		<a href="#back-btn" class="text-blue-500 hover:underline">Volver arriba</a>
+	</div>
 </BlogLayout>

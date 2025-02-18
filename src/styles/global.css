@@ -7,3 +7,7 @@
 .disabled {
 	@apply bg-gray-600 hover:bg-gray-600 cursor-default;
 }
+
+.a-author {
+	@apply text-blue-500 hover:underline
+}

@@ -19,7 +19,7 @@ const { title } = Astro.props;
     <ClientRouter />
   </head>
   <body class="bg-gray-900">
-    <a href="/" id="back-btn">Volver a la página principal</a>
+    <a onclick="history.back()" id="back-btn">Volver a la página principal</a>
 
     <main class="mb-10 max-w-5xl m-auto px-2 py-2">
       <slot />
